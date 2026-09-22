@@ -1,0 +1,9 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "minecraft:mushroom_fields",
+    "minecraft:dark_forest"
+  ],
+  "features": "crystalspikes:example_amethyst_spike",
+  "step": "underground_decoration"
+}

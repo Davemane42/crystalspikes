@@ -1,0 +1,70 @@
+{
+  "type": "crystalspikes:crystal_spike",
+  "config": {
+    "core": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:calcite"
+      }
+    },
+    "outer_layer": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "weight": 4,
+          "data": {
+            "Name": "minecraft:amethyst_block"
+          }
+        },
+        {
+          "weight": 1,
+          "data": {
+            "Name": "minecraft:budding_amethyst"
+          }
+        }
+      ]
+    },
+    "surface_decorator": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "weight": 3,
+          "data": {
+            "Name": "minecraft:amethyst_cluster"
+          }
+        },
+        {
+          "weight": 2,
+          "data": {
+            "Name": "minecraft:large_amethyst_bud"
+          }
+        },
+        {
+          "weight": 1,
+          "data": {
+            "Name": "minecraft:medium_amethyst_bud"
+          }
+        },
+        {
+          "weight": 1,
+          "data": {
+            "Name": "minecraft:small_amethyst_bud"
+          }
+        }
+      ]
+    },
+    "base": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:basalt"
+      }
+    },
+    "base_radius": {
+      "type": "minecraft:uniform",
+      "min_inclusive": 2,
+      "max_inclusive": 4
+    },
+    "crystal_direction": "floor",
+    "anchor_tag": "crystalspikes:spike_anchor"
+  }
+}
