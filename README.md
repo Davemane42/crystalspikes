@@ -3,22 +3,35 @@
 A NeoForge 1.21.1 mod that adds a highly configurable, datapack-driven crystal spike
 worldgen feature with geode-style block providers and a custom placement modifier for finding terrain undersides.
 
+![Amethyst spike](example/example_amethyst_spike.png)
+
 ## Feature: `crystalspikes:crystal_spike`
 
 Configured feature JSON (`data/<namespace>/worldgen/configured_feature/<name>.json`):
 
 | Field | Type | Default | Description |
 |---|---|---|---|
-| `core` | BlockStateProvider | *required* | Spike interior blocks |
-| `outer_layer` | BlockStateProvider | *required* | Spike surface blocks (any spike block exposed to air/water/lava) |
-| `surface_decorator` | BlockStateProvider | *(none)* | Blocks attached to the spike surface (e.g. clusters, buds). `facing`/`waterlogged` are set automatically if the block has those properties |
-| `base` | BlockStateProvider | calcite | Blocks that replace the anchor area where the spike erupts |
-| `base_radius` | IntProvider (1–32) | *required* | Spike base radius; spike height scales with it |
-| `crystal_direction` | `"floor"` / `"ceiling"` | *required* | `floor` = standing spike, `ceiling` = hanging spike |
+| `core` | BlockStateProvider | *required* | Spike interior blocks (can be air/water for a hollow spike) |
+| `outer_layer` | BlockStateProvider | *required* | Spike shell blocks — applied to spike blocks exposed to space *outside* the spike |
+| `surface_decorator` | BlockStateProvider | *(none)* | Blocks attached to the shell's top/bottom faces (e.g. clusters, buds, coral). `facing`/`waterlogged` are set automatically |
+| `wall_decorator` | BlockStateProvider | `surface_decorator` | Blocks attached to the shell's *horizontal* faces (e.g. coral wall fans). Falls back to `surface_decorator` when absent |
+| `base` | BlockStateProvider | calcite | Blocks that replace exposed anchor blocks around the spike base and roots |
+| `base_radius` | IntProvider (1–32) | *required* | Spike base radius |
+| `direction` | list of directions | *required* | Main growth direction(s); one is picked at random per spike (`up`, `down`, `north`, `south`, `east`, `west`) |
+| `min_angle` / `max_angle` | float (0–180) | `0` | Random tilt range away from the main direction, in degrees. `0` = straight along `direction` |
+| `slope_angle` | FloatProvider (0–85) | `26.565` | Cone half-angle in degrees; controls how fast the spike tapers (26.565° = 1:2 taper). `0` = cylinder |
+| `height` | IntProvider (1–256) | derived | Spike length along its axis; defaults to the natural cone length `radius / tan(slope_angle)` |
+| `root_depth` | int (0–64) | `4` | How far roots extend from the base back toward the mounting surface, so spikes on slopes/ledges don't float. `0` disables |
+| `decorator_chance` | float (0–1) | `0.1667` | Chance per shell block to roll decoration |
+| `decorator_face_chance` | float (0–1) | `0.5` | Chance per open face of a rolled shell block |
 | `anchor_tag` | Block tag | `minecraft:base_stone_overworld` | Blocks the spike can anchor to (and that `base` may replace) |
 
-All BlockStateProvider fields accept any vanilla provider, e.g. `simple_state_provider`
-or `weighted_state_provider` for mixed blocks within one spike.
+Notes:
+
+- All BlockStateProvider fields accept any vanilla provider, e.g. `simple_state_provider`
+  or `weighted_state_provider` for mixed blocks within one spike.
+- Decorators are only placed where they can survive (`canSurvive`), so e.g. sea pickles
+  only land on coral blocks and floor fans never float sideways.
 
 ### Example
 
@@ -49,13 +62,26 @@ or `weighted_state_provider` for mixed blocks within one spike.
       "state": { "Name": "minecraft:basalt" }
     },
     "base_radius": { "type": "minecraft:uniform", "min_inclusive": 2, "max_inclusive": 4 },
-    "crystal_direction": "floor"
+    "direction": ["up"],
+    "min_angle": 0.0,
+    "max_angle": 20.0,
+    "slope_angle": { "type": "minecraft:uniform", "min_inclusive": 22.0, "max_exclusive": 30.0 },
+    "root_depth": 4,
+    "decorator_chance": 0.1667,
+    "decorator_face_chance": 0.5
   }
 }
 ```
 
-A complete working datapack (configured feature, placed feature, biome modifier, anchor
-tag) is in [`example/`](example/).
+## Examples
+
+Complete working datapacks (configured feature, placed feature, biome modifier, anchor
+tags) are in [`example/datapack/`](example/datapack/)
+
+| | |
+|---|---|
+| ![Bubble coral spike](example/example_bubble_coral_spike.png) | ![Bubble and fire coral spikes](example/example_bubble_fire_spike.png) |
+| ![GeOre end spike](example/example_end_GeOre_spike.png) | |
 
 ## Placement modifier: `crystalspikes:under_island`
 
@@ -84,5 +110,4 @@ vanilla's 32-step `environment_scan` limit.
 }
 ```
 
-For surface placement, vanilla's `heightmap` + `environment_scan` (down) works fine —
-see the example datapack.
+For surface placement, vanilla's `heightmap` + `environment_scan` (down) works fine. See the coral spikes in the example datapack.

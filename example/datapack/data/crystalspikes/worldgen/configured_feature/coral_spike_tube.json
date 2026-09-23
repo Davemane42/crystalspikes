@@ -4,22 +4,22 @@
     "core": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "minecraft:calcite"
+        "Name": "minecraft:water"
       }
     },
     "outer_layer": {
       "type": "minecraft:weighted_state_provider",
       "entries": [
         {
-          "weight": 4,
+          "weight": 1,
           "data": {
-            "Name": "minecraft:amethyst_block"
+            "Name": "minecraft:tube_coral_block"
           }
         },
         {
           "weight": 1,
           "data": {
-            "Name": "minecraft:budding_amethyst"
+            "Name": "minecraft:water"
           }
         }
       ]
@@ -28,27 +28,27 @@
       "type": "minecraft:weighted_state_provider",
       "entries": [
         {
-          "weight": 3,
+          "weight": 4,
           "data": {
-            "Name": "minecraft:amethyst_cluster"
+            "Name": "minecraft:tube_coral"
           }
         },
         {
           "weight": 2,
           "data": {
-            "Name": "minecraft:large_amethyst_bud"
+            "Name": "minecraft:tube_coral_fan"
+          }
+        },
+        {
+          "weight": 2,
+          "data": {
+            "Name": "minecraft:seagrass"
           }
         },
         {
           "weight": 1,
           "data": {
-            "Name": "minecraft:medium_amethyst_bud"
-          }
-        },
-        {
-          "weight": 1,
-          "data": {
-            "Name": "minecraft:small_amethyst_bud"
+            "Name": "minecraft:sea_pickle"
           }
         }
       ]
@@ -56,7 +56,7 @@
     "base": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "minecraft:basalt"
+        "Name": "minecraft:sand"
       }
     },
     "base_radius": {
@@ -64,7 +64,24 @@
       "min_inclusive": 2,
       "max_inclusive": 4
     },
-    "crystal_direction": "floor",
-    "anchor_tag": "crystalspikes:spike_anchor"
+    "anchor_tag": "crystalspikes:coral_spike_anchor",
+    "direction": [
+      "up"
+    ],
+    "min_angle": 0.0,
+    "max_angle": 25.0,
+    "slope_angle": {
+      "type": "minecraft:uniform",
+      "min_inclusive": 22.0,
+      "max_exclusive": 30.0
+    },
+    "wall_decorator": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:tube_coral_wall_fan"
+      }
+    },
+    "decorator_chance": 0.5,
+    "decorator_face_chance": 0.75
   }
 }

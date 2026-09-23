@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:base_stone_overworld",
+    "#minecraft:dirt",
+    "#lush_ground_replaceable",
+    "minecraft:sand",
+    "minecraft:gravel"
+  ]
+}

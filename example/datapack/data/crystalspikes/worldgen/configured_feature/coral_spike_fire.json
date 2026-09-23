@@ -1,0 +1,87 @@
+{
+  "type": "crystalspikes:crystal_spike",
+  "config": {
+    "core": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:water"
+      }
+    },
+    "outer_layer": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "weight": 1,
+          "data": {
+            "Name": "minecraft:fire_coral_block"
+          }
+        },
+        {
+          "weight": 1,
+          "data": {
+            "Name": "minecraft:water"
+          }
+        }
+      ]
+    },
+    "surface_decorator": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "weight": 4,
+          "data": {
+            "Name": "minecraft:fire_coral"
+          }
+        },
+        {
+          "weight": 2,
+          "data": {
+            "Name": "minecraft:fire_coral_fan"
+          }
+        },
+        {
+          "weight": 2,
+          "data": {
+            "Name": "minecraft:seagrass"
+          }
+        },
+        {
+          "weight": 1,
+          "data": {
+            "Name": "minecraft:sea_pickle"
+          }
+        }
+      ]
+    },
+    "base": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:sand"
+      }
+    },
+    "base_radius": {
+      "type": "minecraft:uniform",
+      "min_inclusive": 2,
+      "max_inclusive": 4
+    },
+    "anchor_tag": "crystalspikes:coral_spike_anchor",
+    "direction": [
+      "up"
+    ],
+    "min_angle": 0.0,
+    "max_angle": 25.0,
+    "slope_angle": {
+      "type": "minecraft:uniform",
+      "min_inclusive": 22.0,
+      "max_exclusive": 30.0
+    },
+    "wall_decorator": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:fire_coral_wall_fan"
+      }
+    },
+    "decorator_chance": 0.5,
+    "decorator_face_chance": 0.75
+  }
+}

@@ -1,5 +1,6 @@
 package com.crystalspikes.worldgen;
 
+import com.crystalspikes.CrystalSpikes;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -76,7 +77,7 @@ public class UnderIslandPlacement extends PlacementModifier {
 
     @Override
     public PlacementModifierType<?> type() {
-        return CrystalSpikesPlacements.UNDER_ISLAND.get();
+        return CrystalSpikes.UNDER_ISLAND.get();
     }
 
     public enum Selection implements StringRepresentable {

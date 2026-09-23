@@ -1,0 +1,12 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "minecraft:warm_ocean",
+  "features": [
+    "crystalspikes:coral_spike_tube",
+    "crystalspikes:coral_spike_brain",
+    "crystalspikes:coral_spike_bubble",
+    "crystalspikes:coral_spike_fire",
+    "crystalspikes:coral_spike_horn"
+  ],
+  "step": "vegetal_decoration"
+}
